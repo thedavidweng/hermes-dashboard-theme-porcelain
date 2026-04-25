@@ -35,9 +35,9 @@ colorOverrides:
   success: "#262626"
 
 typography:
-  fontSans: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif"
+  fontSans: "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
   fontMono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
-  fontDisplay: "'SF Pro Rounded', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+  fontDisplay: "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
   baseSize: "16px"
   lineHeight: "1.5"
   letterSpacing: "0"
@@ -124,8 +124,8 @@ customCSS: |
     font-weight: 500 !important;
   }
 
-  /* 修复侧边栏汉堡/关闭导航按钮被全局按钮样式覆盖 */
-  aside#app-sidebar button[aria-label*="navigation"] {
+  /* 侧边栏头部图标按钮（与语言无关） */
+  aside#app-sidebar > div:first-child button {
     width: 1.75rem !important;
     height: 1.75rem !important;
     padding: 0 !important;
@@ -135,29 +135,11 @@ customCSS: |
     color: #000000 !important;
   }
 
-  aside#app-sidebar button[aria-label*="navigation"] svg {
+  aside#app-sidebar > div:first-child button svg {
     display: block !important;
     width: 1rem !important;
     height: 1rem !important;
     stroke: currentColor !important;
-    fill: none !important;
-    opacity: 1 !important;
-  }
-
-  button[aria-label="Open navigation"],
-  button[aria-label="Close navigation"] {
-    width: 1.75rem !important;
-    height: 1.75rem !important;
-    padding: 0 !important;
-    border: 1px solid #d4d4d4 !important;
-    border-radius: 0.375rem !important;
-    background: #ffffff !important;
-    color: #000000 !important;
-  }
-
-  button[aria-label="Open navigation"] svg,
-  button[aria-label="Close navigation"] svg {
-    stroke: #000000 !important;
     fill: none !important;
     opacity: 1 !important;
   }
@@ -292,12 +274,7 @@ customCSS: |
   }
 
   main button[class*="h-7"][class*="w-7"],
-  main button[class*="h-8"][class*="w-8"],
-  main button[aria-label*="delete" i],
-  main button[aria-label*="remove" i],
-  main button[aria-label*="session" i],
-  main button[title*="delete" i],
-  main button[title*="remove" i] {
+  main button[class*="h-8"][class*="w-8"] {
     background: #ffffff !important;
     color: #2f2f2f !important;
     border: 1px solid #d4d4d4 !important;
@@ -313,6 +290,28 @@ customCSS: |
     opacity: 1 !important;
   }
 
+  /* 图标按钮统一可见（语言无关，不依赖 aria-label/title） */
+  main button:has(svg):not(:has(span)),
+  main [role="button"]:has(svg):not(:has(span)) {
+    color: #1f1f1f !important;
+    border-color: #d4d4d4 !important;
+    background: #ffffff !important;
+    opacity: 1 !important;
+  }
+
+  main button:has(svg):not(:has(span)) svg,
+  main [role="button"]:has(svg):not(:has(span)) svg,
+  main svg.lucide-trash,
+  main .lucide-trash,
+  main [data-lucide="trash"] {
+    color: #1f1f1f !important;
+    stroke: #1f1f1f !important;
+    fill: none !important;
+    stroke-opacity: 1 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
   /* 会话行右侧小型号标（如 CLI/CRON/TUI） */
   main [class*="px-2"][class*="py-1"],
   main [class*="text-[10px]"],
@@ -325,8 +324,7 @@ customCSS: |
 
   /* 分页/底部控件可见化 */
   main [class*="pagination"] button,
-  main button[aria-label*="page" i],
-  main button[title*="page" i] {
+  main [class*="page"] button {
     color: #2f2f2f !important;
     border-color: #d4d4d4 !important;
     background: #ffffff !important;
