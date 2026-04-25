@@ -1,0 +1,15 @@
+{
+  "name": "porcelain-theme",
+  "label": "Porcelain Theme Companion",
+  "description": "Companion UI elements for the Minimalist dashboard theme — sidebar HUD, header crest, optional page augmentations.",
+  "icon": "Sparkles",
+  "version": "1.0.0",
+  "tab": {
+    "path": "/minimalist",
+    "position": "end",
+    "hidden": true
+  },
+  "slots": ["sidebar", "header-left"],
+  "entry": "dist/index.js",
+  "css": "dist/style.css"
+}

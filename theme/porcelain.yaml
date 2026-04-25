@@ -1,0 +1,544 @@
+name: porcelain
+label: Porcelain
+description: Soft monochrome on white - clean and focused.
+
+palette:
+  background:
+    hex: "#ffffff"
+    alpha: 1.0
+  midground:
+    hex: "#262626"
+    alpha: 1.0
+  foreground:
+    hex: "#000000"
+    alpha: 1.0
+  warmGlow: "rgba(0, 0, 0, 0)"
+  noiseOpacity: 0
+
+colorOverrides:
+  primary: "#e5e5e5"
+  primaryForeground: "#262626"
+  secondary: "#fafafa"
+  secondaryForeground: "#262626"
+  accent: "#f5f5f5"
+  accentForeground: "#262626"
+  muted: "#fafafa"
+  mutedForeground: "#737373"
+  border: "#e5e5e5"
+  input: "#e5e5e5"
+  ring: "rgba(59, 130, 246, 0.5)"
+  card: "#ffffff"
+  cardForeground: "#000000"
+  popover: "#ffffff"
+  popoverForeground: "#000000"
+  destructive: "#262626"
+  success: "#262626"
+
+typography:
+  fontSans: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif"
+  fontMono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+  fontDisplay: "'SF Pro Rounded', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+  baseSize: "16px"
+  lineHeight: "1.5"
+  letterSpacing: "0"
+
+layout:
+  radius: "12px"
+  density: comfortable
+
+layoutVariant: standard
+
+componentStyles:
+  page:
+    background: "#ffffff"
+  header:
+    background: "#ffffff"
+    borderBottom: "1px solid #e5e5e5"
+    boxShadow: "none"
+  card:
+    background: "#ffffff"
+    border: "1px solid #e5e5e5"
+    borderRadius: "12px"
+    boxShadow: "none"
+  tab:
+    borderRadius: "9999px"
+    boxShadow: "none"
+  badge:
+    borderRadius: "9999px"
+    boxShadow: "none"
+  progress:
+    borderRadius: "9999px"
+    boxShadow: "none"
+
+customCSS: |
+  :root {
+    --minimal-black: #000000;
+    --minimal-near-black: #262626;
+    --minimal-stone: #737373;
+    --minimal-silver: #a3a3a3;
+    --minimal-border: #e5e5e5;
+    --minimal-surface: #fafafa;
+    --minimal-container: 12px;
+    --minimal-pill: 9999px;
+  }
+
+  body, #root {
+    background: #ffffff !important;
+    color: var(--minimal-black) !important;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  * {
+    box-shadow: none !important;
+  }
+
+  h1, h2, h3, [data-slot="card-title"], [class*="text-3xl"], [class*="text-4xl"] {
+    font-family: var(--font-display), var(--font-sans), sans-serif !important;
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+    color: var(--minimal-black) !important;
+  }
+
+  p, span, small, label, [class*="text-muted"] {
+    color: var(--minimal-stone);
+  }
+
+  button,
+  [role="button"],
+  [role="tab"],
+  .tabs-trigger,
+  input,
+  select,
+  textarea {
+    border-radius: var(--minimal-pill) !important;
+  }
+
+  button,
+  [role="button"],
+  .tabs-trigger {
+    border: 1px solid #d4d4d4 !important;
+    background: #ffffff !important;
+    color: #404040 !important;
+    padding: 10px 24px !important;
+    font-weight: 500 !important;
+  }
+
+  /* 修复侧边栏汉堡/关闭导航按钮被全局按钮样式覆盖 */
+  aside#app-sidebar button[aria-label*="navigation"] {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    padding: 0 !important;
+    border: 1px solid #d4d4d4 !important;
+    border-radius: 0.375rem !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  aside#app-sidebar button[aria-label*="navigation"] svg {
+    display: block !important;
+    width: 1rem !important;
+    height: 1rem !important;
+    stroke: currentColor !important;
+    fill: none !important;
+    opacity: 1 !important;
+  }
+
+  button[aria-label="Open navigation"],
+  button[aria-label="Close navigation"] {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    padding: 0 !important;
+    border: 1px solid #d4d4d4 !important;
+    border-radius: 0.375rem !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  button[aria-label="Open navigation"] svg,
+  button[aria-label="Close navigation"] svg {
+    stroke: #000000 !important;
+    fill: none !important;
+    opacity: 1 !important;
+  }
+
+  /* 侧边栏改为纯色，移除毛玻璃与半透明层 */
+  aside#app-sidebar,
+  aside#app-sidebar *,
+  #app-sidebar {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  aside#app-sidebar,
+  #app-sidebar {
+    background: #ffffff !important;
+    opacity: 1 !important;
+  }
+
+  aside#app-sidebar [class*="bg-background-base/95"],
+  aside#app-sidebar [class*="bg-background-base/"],
+  aside#app-sidebar [class*="bg-black/"],
+  aside#app-sidebar [class*="bg-card/"],
+  aside#app-sidebar [class*="bg-midground/"] {
+    background: #ffffff !important;
+    opacity: 1 !important;
+  }
+
+  aside#app-sidebar [class*="backdrop-blur"],
+  aside#app-sidebar [class*="blur-"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+  }
+
+  /* 修复左上角 Hermes Agent logo 在浅色主题下发灰/丢失 */
+  aside#app-sidebar [class*="h-14"] img,
+  aside#app-sidebar [class*="h-14"] svg,
+  aside#app-sidebar [class*="h-14"] [class*="logo"],
+  aside#app-sidebar [class*="h-14"] [class*="brand"] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
+    color: #111111 !important;
+    fill: currentColor !important;
+    stroke: currentColor !important;
+  }
+
+  aside#app-sidebar [class*="h-14"] a,
+  aside#app-sidebar [class*="h-14"] span,
+  aside#app-sidebar [class*="h-14"] div {
+    color: #111111 !important;
+  }
+
+  /* 顶部品牌区定点兜底：Hermes Agent logo 必须可见 */
+  #app-sidebar > div:first-child,
+  aside#app-sidebar > div:first-child {
+    background: #ffffff !important;
+  }
+
+  #app-sidebar > div:first-child *,
+  aside#app-sidebar > div:first-child * {
+    opacity: 1 !important;
+    visibility: visible !important;
+    mix-blend-mode: normal !important;
+    filter: none !important;
+  }
+
+  #app-sidebar > div:first-child .font-mondwest,
+  aside#app-sidebar > div:first-child .font-mondwest,
+  #app-sidebar > div:first-child [class*="font-mondwest"],
+  aside#app-sidebar > div:first-child [class*="font-mondwest"],
+  #app-sidebar > div:first-child [class*="text-midground"],
+  aside#app-sidebar > div:first-child [class*="text-midground"] {
+    color: #111111 !important;
+    -webkit-text-fill-color: #111111 !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
+  }
+
+  #app-sidebar > div:first-child svg,
+  aside#app-sidebar > div:first-child svg,
+  #app-sidebar > div:first-child path,
+  aside#app-sidebar > div:first-child path {
+    stroke: #111111 !important;
+    fill: #111111 !important;
+    opacity: 1 !important;
+  }
+
+  /* 全局语义色去色化：清理残留绿/青色控件 */
+  [class*="bg-green"],
+  [class*="bg-emerald"],
+  [class*="bg-teal"],
+  [class*="bg-lime"],
+  [class*="bg-cyan"] {
+    background-color: #e5e5e5 !important;
+    color: #262626 !important;
+    border-color: #d4d4d4 !important;
+  }
+
+  [class*="text-green"],
+  [class*="text-emerald"],
+  [class*="text-teal"],
+  [class*="text-lime"],
+  [class*="text-cyan"] {
+    color: #525252 !important;
+  }
+
+  [class*="border-green"],
+  [class*="border-emerald"],
+  [class*="border-teal"],
+  [class*="border-lime"],
+  [class*="border-cyan"] {
+    border-color: #d4d4d4 !important;
+  }
+
+  /* Sessions 右侧操作区可见性修复（模型标签/图标/分页按钮） */
+  main button[class*="h-7"],
+  main button[class*="h-8"],
+  main button[class*="w-7"],
+  main button[class*="w-8"],
+  main [class*="border-current/20"],
+  main [class*="text-midground/"],
+  main [class*="text-foreground/"],
+  main [class*="text-current/"],
+  main [class*="opacity-50"],
+  main [class*="opacity-60"],
+  main [class*="opacity-70"] {
+    color: #2f2f2f !important;
+    border-color: #d4d4d4 !important;
+    opacity: 1 !important;
+  }
+
+  main button[class*="h-7"][class*="w-7"],
+  main button[class*="h-8"][class*="w-8"],
+  main button[aria-label*="delete" i],
+  main button[aria-label*="remove" i],
+  main button[aria-label*="session" i],
+  main button[title*="delete" i],
+  main button[title*="remove" i] {
+    background: #ffffff !important;
+    color: #2f2f2f !important;
+    border: 1px solid #d4d4d4 !important;
+    box-shadow: none !important;
+  }
+
+  main button svg,
+  main [role="button"] svg,
+  main .lucide {
+    color: #2f2f2f !important;
+    stroke: currentColor !important;
+    fill: none !important;
+    opacity: 1 !important;
+  }
+
+  /* 会话行右侧小型号标（如 CLI/CRON/TUI） */
+  main [class*="px-2"][class*="py-1"],
+  main [class*="text-[10px]"],
+  main [class*="text-xs"][class*="border"] {
+    color: #3a3a3a !important;
+    border-color: #d4d4d4 !important;
+    background: #ffffff !important;
+    opacity: 1 !important;
+  }
+
+  /* 分页/底部控件可见化 */
+  main [class*="pagination"] button,
+  main button[aria-label*="page" i],
+  main button[title*="page" i] {
+    color: #2f2f2f !important;
+    border-color: #d4d4d4 !important;
+    background: #ffffff !important;
+    opacity: 1 !important;
+  }
+
+  /* Switch 开关在浅色主题下可见化 */
+  [role="switch"],
+  button[role="switch"],
+  [data-slot="switch"] {
+    border: 1px solid #d4d4d4 !important;
+    background: #f5f5f5 !important;
+    color: #262626 !important;
+    opacity: 1 !important;
+    min-width: 2.25rem !important;
+    min-height: 1.25rem !important;
+  }
+
+  [role="switch"][data-state="checked"],
+  button[role="switch"][data-state="checked"],
+  [data-slot="switch"][data-state="checked"] {
+    background: #dcdcdc !important;
+    border-color: #bfbfbf !important;
+  }
+
+  [role="switch"] span,
+  button[role="switch"] span,
+  [data-slot="switch"] span,
+  [role="switch"] [data-state],
+  button[role="switch"] [data-state],
+  [data-slot="switch"] [data-state] {
+    background: #262626 !important;
+    border-color: #262626 !important;
+    opacity: 1 !important;
+  }
+
+  [role="switch"] [data-slot="switch-thumb"],
+  button[role="switch"] [data-slot="switch-thumb"],
+  [data-slot="switch"] [data-slot="switch-thumb"],
+  [class*="switch-thumb"] {
+    background: #262626 !important;
+    border: 1px solid #262626 !important;
+    opacity: 1 !important;
+    box-shadow: none !important;
+  }
+
+  [role="switch"][data-state="checked"] [data-slot="switch-thumb"],
+  button[role="switch"][data-state="checked"] [data-slot="switch-thumb"],
+  [data-slot="switch"][data-state="checked"] [data-slot="switch-thumb"],
+  [class*="switch-thumb"][data-state="checked"] {
+    background: #111111 !important;
+    border-color: #111111 !important;
+  }
+
+  /* 复选框/单选按钮在浅色模式兜底可见 */
+  [role="checkbox"],
+  [data-slot="checkbox"],
+  input[type="checkbox"],
+  [role="radio"],
+  [data-slot="radio-group-item"],
+  input[type="radio"] {
+    border-color: #bfbfbf !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  [role="checkbox"][data-state="checked"],
+  [data-slot="checkbox"][data-state="checked"],
+  input[type="checkbox"]:checked,
+  [role="radio"][data-state="checked"],
+  [data-slot="radio-group-item"][data-state="checked"],
+  input[type="radio"]:checked {
+    background: #262626 !important;
+    border-color: #262626 !important;
+    color: #ffffff !important;
+  }
+
+  .tabs-trigger[data-state="active"],
+  [role="tab"][data-state="active"] {
+    background: #e5e5e5 !important;
+    color: #262626 !important;
+    border-color: #e5e5e5 !important;
+  }
+
+  input,
+  select,
+  textarea,
+  [type="search"] {
+    border: 1px solid var(--minimal-border) !important;
+    background: #ffffff !important;
+    color: #262626 !important;
+    padding: 10px 16px !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--minimal-silver) !important;
+  }
+
+  .card,
+  [data-slot="card"],
+  [class*="rounded-xl"] {
+    border-radius: var(--minimal-container) !important;
+    border: 1px solid var(--minimal-border) !important;
+    background: #ffffff !important;
+  }
+
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid var(--minimal-border);
+    border-radius: var(--minimal-container);
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  table thead th {
+    border-bottom: 1px solid var(--minimal-border);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--minimal-stone);
+    background: #ffffff;
+  }
+
+  table tr td {
+    border-bottom: 1px solid #f0f0f0;
+    color: #111111;
+    background: #ffffff;
+  }
+
+  table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  [role="listbox"],
+  [role="menu"],
+  .dialog,
+  .modal,
+  [data-state="open"][role="dialog"] {
+    border-radius: var(--minimal-container) !important;
+    border: 1px solid var(--minimal-border) !important;
+    background: #ffffff !important;
+  }
+
+  .badge,
+  [role="status"],
+  [data-slot="badge"] {
+    border-radius: var(--minimal-pill) !important;
+    border: 1px solid var(--minimal-border) !important;
+    background: #ffffff !important;
+    color: #404040 !important;
+    font-weight: 500 !important;
+  }
+
+  /* 修复原生 dark 主题混合模式在白底下导致标题不可见 */
+  .blend-lighter {
+    mix-blend-mode: normal !important;
+    opacity: 1 !important;
+  }
+
+  h3.font-expanded,
+  .card h3,
+  [data-slot="card"] h3 {
+    color: #262626 !important;
+  }
+
+  /* 主题选择器：为 Porcelain 补上调色盘预览块 */
+  button:has(span:where(:not(:empty))) .h-4.w-9.shrink-0.border.border-dashed.border-current\/20 {
+    border-style: solid !important;
+    border-color: #d4d4d4 !important;
+    background:
+      linear-gradient(
+        to right,
+        #000000 0 33.33%,
+        #262626 33.33% 66.66%,
+        #e5e5e5 66.66% 100%
+      ) !important;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #d4d4d4;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #fafafa;
+  }
+
+  /* 关闭 dark 默认的大圆形模糊装饰层，避免侧边栏展开时遮挡内容 */
+  #root > div.bg-black::before,
+  #root > div.bg-black::after,
+  #root > div.bg-black [class*="blur-3xl"],
+  #root > div.bg-black [class*="blur-2xl"],
+  #root > div.bg-black [class*="blur-xl"] {
+    display: none !important;
+    content: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    opacity: 0 !important;
+  }
+
+  @media (max-width: 850px) {
+    h1, [class*="text-4xl"] {
+      font-size: 2rem !important;
+      line-height: 1.1 !important;
+    }
+  }
