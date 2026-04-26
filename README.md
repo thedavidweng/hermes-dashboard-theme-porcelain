@@ -51,10 +51,7 @@ hermes-dashboard-theme-porcelain/
 ```
 
 The installer copies `theme/porcelain.yaml` to `~/.hermes/dashboard-themes/`.
-If it finds an older `minimalist.yaml` install that declares `name: porcelain`,
-it moves that legacy file to `minimalist.yaml.disabled` so Hermes discovers the
-current `porcelain.yaml` definition first. It also offers to install the
-companion plugin. The plugin is optional for the theme itself, but recommended
+It also offers to install the companion plugin. The plugin is optional for the theme itself, but recommended
 because it adds the Porcelain swatch preview while other themes are active
 without patching Hermes core.
 
@@ -62,8 +59,6 @@ Manual install:
 
 ```bash
 mkdir -p ~/.hermes/dashboard-themes
-if grep -Eq '^name:[[:space:]]*porcelain[[:space:]]*$' ~/.hermes/dashboard-themes/minimalist.yaml 2>/dev/null; then
-  mv ~/.hermes/dashboard-themes/minimalist.yaml ~/.hermes/dashboard-themes/minimalist.yaml.disabled
 fi
 cp theme/porcelain.yaml ~/.hermes/dashboard-themes/
 

@@ -51,8 +51,6 @@ hermes-dashboard-theme-porcelain/
 ```
 
 安装脚本会将 `theme/porcelain.yaml` 复制到 `~/.hermes/dashboard-themes/`。
-如果检测到旧的 `minimalist.yaml` 中声明了 `name: porcelain`，会将其重命名为
-`minimalist.yaml.disabled`，确保 Hermes 优先发现新的 `porcelain.yaml` 定义。
 脚本还会询问是否安装配套插件：插件本身不是主题运行所必需的，但推荐安装，
 因为它在其他主题激活时也能显示 Porcelain 的色板预览，而无需修改 Hermes 核心。
 
@@ -60,8 +58,6 @@ hermes-dashboard-theme-porcelain/
 
 ```bash
 mkdir -p ~/.hermes/dashboard-themes
-if grep -Eq '^name:[[:space:]]*porcelain[[:space:]]*$' ~/.hermes/dashboard-themes/minimalist.yaml 2>/dev/null; then
-  mv ~/.hermes/dashboard-themes/minimalist.yaml ~/.hermes/dashboard-themes/minimalist.yaml.disabled
 fi
 cp theme/porcelain.yaml ~/.hermes/dashboard-themes/
 
