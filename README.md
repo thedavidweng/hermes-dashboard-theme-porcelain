@@ -13,6 +13,13 @@ and higher contrast controls.
 - Remove decorative glow, grain, and filler imagery that become distracting in light mode.
 - Keep icon-only controls, switches, badges, and small labels visible.
 
+## Screenshots
+
+| Sessions | Config | Analytics |
+|---|---|---|
+| ![Sessions](public/sessions.webp) | ![Config](public/config.webp) | ![Analytics](public/analytics.webp) |
+| Sessions view — conversation list and session management | Config — theme selector and settings | Analytics — token usage and cost breakdown |
+
 ## Project Structure
 
 ```text
