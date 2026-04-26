@@ -18,7 +18,6 @@ and higher contrast controls.
 | Sessions | Config | Analytics |
 |---|---|---|
 | ![Sessions](public/sessions.webp) | ![Config](public/config.webp) | ![Analytics](public/analytics.webp) |
-| Sessions view — conversation list and session management | Config — theme selector and settings | Analytics — token usage and cost breakdown |
 
 ## Project Structure
 
