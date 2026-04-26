@@ -1,36 +1,11 @@
 /**
- * Minimalist Theme Companion Plugin — Custom Styles
+ * Porcelain Theme Companion Plugin styles.
  *
- * 本文件的样式将自动注入到 dashboard，无 32KB 限制。
- * 使用 CSS 变量以适配当前激活的主题。
- *
- * 官方文档：Custom CSS per plugin
+ * Kept intentionally small: the companion exists only to provide the
+ * cross-theme Porcelain swatch workaround.
  */
 
-/* ─── Sidebar HUD 微调 ───────────────────────────────────── */
-.porcelain-sidebar-hud {
-  font-size: 0.8125rem;
+[data-porcelain-swatch="true"] span {
+  display: block;
+  min-width: 0;
 }
-
-/* 保持扁平视觉，不做发光 */
-.porcelain-sidebar-hud [class*="bg-primary"] {
-  box-shadow: none;
-}
-
-/* ─── Header Crest ───────────────────────────────────────── */
-.porcelain-crest {
-  transition: none;
-}
-.porcelain-crest:hover {
-  transform: none;
-  box-shadow: none;
-}
-
-/* ─── Sessions Banner ─────────────────────────────────────── */
-.porcelain-sessions-banner {
-  animation: none;
-  border-left: 3px solid var(--color-primary);
-}
-
-/* ─── 如果未来添加更多组件，可以在这里添加相应样式 ─────────── */
-/* 例如：自定义图表容器、tooltip 等 */

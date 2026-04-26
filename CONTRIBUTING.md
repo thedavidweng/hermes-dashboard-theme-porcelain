@@ -1,114 +1,65 @@
-# 贡献指南 / Contributing
+# Contributing
 
-本仓库为 Hermes Dashboard Theme Hackathon 提交，欢迎 Issue 和 Pull Request。
+Porcelain is meant to be a shareable Hermes dashboard theme. Changes should stay
+inside this repository and must not require users to patch their Hermes install.
 
-## 开发工作流
+## Local Workflow
 
-### 1. 本地编辑
+Edit the theme:
+
 ```bash
-# 编辑主题文件
 code theme/porcelain.yaml
-
-# 编辑插件
-code plugin/dist/index.js
 ```
 
-### 2. 安装到本地 Hermes
+Install locally:
+
 ```bash
-# 复制主题（覆盖安装）
-cp theme/porcelain.yaml ~/.hermes/dashboard-themes/
-
-# 复制插件
-cp -r plugin ~/.hermes/plugins/porcelain-theme/dashboard/
-
-# 重扫插件（无需重启 dashboard）
-curl http://127.0.0.1:9119/api/dashboard/plugins/rescan
+./scripts/dev.sh install
+./scripts/dev.sh install-plugin
 ```
 
-### 3. 调试
+Request a plugin rescan if the dashboard is running:
+
 ```bash
-# 查看 dashboard 日志
-tail -f ~/.hermes/logs/errors.log
-
-# 验证主题 API 响应
-curl http://127.0.0.1:9119/api/dashboard/themes | jq '.[] | select(.name=="porcelain")'
-
-# 验证插件发现
-curl http://127.0.0.1:9119/api/dashboard/plugins | jq
+./scripts/dev.sh rescan
 ```
 
-### 4. 浏览器调试
-- 打开 `http://127.0.0.1:9119`
-- DevTools → Console：检查 `[porcelain-theme] plugin loaded` 等日志
-- DevTools → Network：确认 `manifest.json`、`index.js`、`style.css` 加载成功（200）
-- DevTools → Elements：检查 CSS 变量 `--color-primary` 等是否正确应用
-- DevTools → Sources：在 `index.js` 中打点调试
+Open the dashboard at `http://127.0.0.1:9119`, select Porcelain, and refresh the
+browser if needed.
 
-### 5. 截图
+## Scope Rules
+
+- Preserve the default Hermes layout and control sizes.
+- Prefer theme tokens and narrow CSS selectors over broad global overrides.
+- Do not add plugin UI that changes the dashboard layout unless it is explicitly
+  requested.
+- Keep repository files, comments, scripts, and docs in English.
+- Do not require per-machine Hermes source edits.
+
+## Validation
+
 ```bash
-# macOS 截图：Cmd+Shift+4 或使用内置的 Screenshot.app
-# 建议保存到 docs/screenshots/ 目录
-open docs/screenshots/
+ruby -e 'require "yaml"; YAML.load_file("theme/porcelain.yaml")'
+node --check plugin/dist/index.js
+python3 -m json.tool plugin/manifest.json >/dev/null
+bash -n scripts/dev.sh scripts/install.sh
+git diff --check
 ```
 
----
-
-## 主题文件结构说明
+## Theme File Shape
 
 ```yaml
-name: porcelain              # 内部标识符（字母/连字符）
-label: Porcelain             # 显示的标题
-description: ...              # 描述文本
-
-palette:
-  background: {hex, alpha}    # 三层颜色 + 两个特效
-  midground: ...
-  foreground: ...
-  warmGlow: "rgba(...)"       # 可选
-  noiseOpacity: 0-1.2         # 可选
-
+name: porcelain
+label: Porcelain
+description: Soft monochrome on white - clean and focused.
+palette: ...
 typography: ...
 layout: ...
-layoutVariant: standard       # standard / cockpit / tiled
-
-# 可选
-assets: ...
 componentStyles: ...
-colorOverrides: ...
 customCSS: |
   ...
 ```
 
-详见官方文档：https://hermes-agent.nousresearch.com/docs/user-guide/features/extending-the-dashboard
+## Support
 
----
-
-## 提交代码
-
-```bash
-git add .
-git commit -m "feat(theme): add porcelain dashboard theme with grayscale palette
-
-- white canvas with gray-500 primary text
-- 12px rounded cards via componentStyles
-- pill-shaped navigation tabs via clip-path
-- customCSS for table styling, scrollbar, progress bars
-- optional companion plugin with sidebar HUD and header crest"
-```
-
----
-
-## 许可证
-
-MIT — 详见 `LICENSE` 文件。
-
----
-
-## 问题反馈
-
-- GitHub Issues：提交 bug 或 feature request
-- Discord：@thedavidweng 或 #dashboard-theming 频道
-
----
-
-**Happy hacking!** 🚀
+Use GitHub Issues for bugs and feature requests.

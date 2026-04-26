@@ -1,15 +1,15 @@
 {
   "name": "porcelain-theme",
   "label": "Porcelain Theme Companion",
-  "description": "Companion UI elements for the Minimalist dashboard theme — sidebar HUD, header crest, optional page augmentations.",
-  "icon": "Sparkles",
+  "description": "Adds the Porcelain swatch preview without patching Hermes core.",
+  "icon": "Palette",
   "version": "1.0.0",
   "tab": {
-    "path": "/minimalist",
+    "path": "/porcelain",
     "position": "end",
     "hidden": true
   },
-  "slots": ["sidebar", "header-left"],
+  "slots": [],
   "entry": "dist/index.js",
   "css": "dist/style.css"
 }

@@ -35,11 +35,11 @@ colorOverrides:
   success: "#262626"
 
 typography:
-  fontSans: "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+  fontSans: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif"
   fontMono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
-  fontDisplay: "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
-  baseSize: "16px"
-  lineHeight: "1.5"
+  fontDisplay: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif"
+  baseSize: "15px"
+  lineHeight: "1.55"
   letterSpacing: "0"
 
 layout:
@@ -69,6 +69,9 @@ componentStyles:
   progress:
     borderRadius: "9999px"
     boxShadow: "none"
+  backdrop:
+    fillerOpacity: "0"
+    fillerBlendMode: "normal"
 
 customCSS: |
   :root {
@@ -80,11 +83,16 @@ customCSS: |
     --minimal-surface: #fafafa;
     --minimal-container: 12px;
     --minimal-pill: 9999px;
+    --porcelain-font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    --porcelain-font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   }
 
-  body, #root {
+  html,
+  body,
+  #root {
     background: #ffffff !important;
     color: var(--minimal-black) !important;
+    font-family: var(--porcelain-font-sans) !important;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -93,38 +101,94 @@ customCSS: |
     box-shadow: none !important;
   }
 
+  #root,
+  #root * {
+    font-family: var(--porcelain-font-sans) !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+
+  #root code,
+  #root kbd,
+  #root pre,
+  #root samp,
+  #root code *,
+  #root pre * {
+    font-family: var(--theme-font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+  }
+
   h1, h2, h3, [data-slot="card-title"], [class*="text-3xl"], [class*="text-4xl"] {
-    font-family: var(--font-display), var(--font-sans), sans-serif !important;
+    font-family: var(--porcelain-font-display) !important;
     font-weight: 500 !important;
     letter-spacing: 0 !important;
     color: var(--minimal-black) !important;
+  }
+
+  .font-mondwest,
+  [class*="font-mondwest"],
+  .font-expanded,
+  [class*="font-expanded"],
+  .font-display,
+  [class*="font-display"],
+  .font-mono-ui,
+  [class*="font-mono-ui"] {
+    font-family: var(--porcelain-font-sans) !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+
+  h1.font-mondwest,
+  h2.font-mondwest,
+  h3.font-mondwest,
+  .font-expanded,
+  [class*="font-expanded"],
+  [data-slot="card-title"] {
+    font-family: var(--porcelain-font-display) !important;
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
   }
 
   p, span, small, label, [class*="text-muted"] {
     color: var(--minimal-stone);
   }
 
-  button,
-  [role="button"],
-  [role="tab"],
-  .tabs-trigger,
-  input,
-  select,
-  textarea {
-    border-radius: var(--minimal-pill) !important;
+  header button:has(svg):not(:has(span)),
+  aside#app-sidebar button:has(svg):not(:has(span)),
+  #app-sidebar button:has(svg):not(:has(span)),
+  button[aria-label*="menu" i],
+  button[aria-label*="sidebar" i],
+  button[title*="menu" i],
+  button[title*="sidebar" i] {
+    color: #111111 !important;
+    opacity: 1 !important;
   }
 
-  button,
-  [role="button"],
-  .tabs-trigger {
-    border: 1px solid #d4d4d4 !important;
-    background: #ffffff !important;
-    color: #404040 !important;
-    padding: 10px 24px !important;
-    font-weight: 500 !important;
+  header button:has(svg):not(:has(span)) svg,
+  header button:has(svg):not(:has(span)) svg *,
+  header button:has(svg):not(:has(span)) path,
+  header button:has(svg):not(:has(span)) line,
+  aside#app-sidebar button:has(svg):not(:has(span)) svg,
+  #app-sidebar button:has(svg):not(:has(span)) svg,
+  button[aria-label*="menu" i] svg,
+  button[aria-label*="menu" i] svg *,
+  button[aria-label*="menu" i] path,
+  button[aria-label*="menu" i] line,
+  button[aria-label*="navigation" i] svg,
+  button[aria-label*="navigation" i] svg *,
+  button[aria-label*="navigation" i] path,
+  button[aria-label*="navigation" i] line,
+  button[aria-label*="sidebar" i] svg,
+  button[title*="menu" i] svg,
+  button[title*="sidebar" i] svg {
+    color: #111111 !important;
+    stroke: #111111 !important;
+    fill: none !important;
+    stroke-opacity: 1 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
-  /* 侧边栏头部图标按钮（与语言无关） */
+  /* Sidebar header icon button. */
   aside#app-sidebar > div:first-child button {
     width: 1.75rem !important;
     height: 1.75rem !important;
@@ -144,7 +208,7 @@ customCSS: |
     opacity: 1 !important;
   }
 
-  /* 侧边栏改为纯色，移除毛玻璃与半透明层 */
+  /* Make the sidebar flat and opaque. */
   aside#app-sidebar,
   aside#app-sidebar *,
   #app-sidebar {
@@ -174,7 +238,7 @@ customCSS: |
     filter: none !important;
   }
 
-  /* 修复左上角 Hermes Agent logo 在浅色主题下发灰/丢失 */
+  /* Keep the Hermes Agent mark visible on a light theme. */
   aside#app-sidebar [class*="h-14"] img,
   aside#app-sidebar [class*="h-14"] svg,
   aside#app-sidebar [class*="h-14"] [class*="logo"],
@@ -194,7 +258,7 @@ customCSS: |
     color: #111111 !important;
   }
 
-  /* 顶部品牌区定点兜底：Hermes Agent logo 必须可见 */
+  /* Header brand fallback. */
   #app-sidebar > div:first-child,
   aside#app-sidebar > div:first-child {
     background: #ffffff !important;
@@ -229,7 +293,7 @@ customCSS: |
     opacity: 1 !important;
   }
 
-  /* 全局语义色去色化：清理残留绿/青色控件 */
+  /* Desaturate semantic green/cyan remnants. */
   [class*="bg-green"],
   [class*="bg-emerald"],
   [class*="bg-teal"],
@@ -256,7 +320,7 @@ customCSS: |
     border-color: #d4d4d4 !important;
   }
 
-  /* Sessions 右侧操作区可见性修复（模型标签/图标/分页按钮） */
+  /* Sessions action area visibility fixes. */
   main button[class*="h-7"],
   main button[class*="h-8"],
   main button[class*="w-7"],
@@ -290,7 +354,7 @@ customCSS: |
     opacity: 1 !important;
   }
 
-  /* 图标按钮统一可见（语言无关，不依赖 aria-label/title） */
+  /* Icon-only buttons must remain visible. */
   main button:has(svg):not(:has(span)),
   main [role="button"]:has(svg):not(:has(span)) {
     color: #1f1f1f !important;
@@ -312,7 +376,7 @@ customCSS: |
     visibility: visible !important;
   }
 
-  /* 会话行右侧小型号标（如 CLI/CRON/TUI） */
+  /* Compact session row labels. */
   main [class*="px-2"][class*="py-1"],
   main [class*="text-[10px]"],
   main [class*="text-xs"][class*="border"] {
@@ -322,7 +386,7 @@ customCSS: |
     opacity: 1 !important;
   }
 
-  /* 分页/底部控件可见化 */
+  /* Pagination and footer controls. */
   main [class*="pagination"] button,
   main [class*="page"] button {
     color: #2f2f2f !important;
@@ -331,55 +395,61 @@ customCSS: |
     opacity: 1 !important;
   }
 
-  /* Switch 开关在浅色主题下可见化 */
-  [role="switch"],
+  /* Switch controls: keep host dimensions and make the thumb visible. */
   button[role="switch"],
-  [data-slot="switch"] {
+  [role="switch"] {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    width: 2.25rem !important;
+    min-width: 2.25rem !important;
+    height: 1.25rem !important;
+    min-height: 1.25rem !important;
+    padding: 0 !important;
     border: 1px solid #d4d4d4 !important;
-    background: #f5f5f5 !important;
+    border-radius: 9999px !important;
+    background: #ffffff !important;
     color: #262626 !important;
     opacity: 1 !important;
-    min-width: 2.25rem !important;
-    min-height: 1.25rem !important;
   }
 
-  [role="switch"][data-state="checked"],
+  button[role="switch"][aria-checked="true"],
+  [role="switch"][aria-checked="true"],
   button[role="switch"][data-state="checked"],
-  [data-slot="switch"][data-state="checked"] {
-    background: #dcdcdc !important;
+  [role="switch"][data-state="checked"] {
+    background: #e5e5e5 !important;
     border-color: #bfbfbf !important;
   }
 
-  [role="switch"] span,
-  button[role="switch"] span,
-  [data-slot="switch"] span,
-  [role="switch"] [data-state],
-  button[role="switch"] [data-state],
-  [data-slot="switch"] [data-state] {
-    background: #262626 !important;
-    border-color: #262626 !important;
-    opacity: 1 !important;
-  }
-
-  [role="switch"] [data-slot="switch-thumb"],
-  button[role="switch"] [data-slot="switch-thumb"],
-  [data-slot="switch"] [data-slot="switch-thumb"],
-  [class*="switch-thumb"] {
-    background: #262626 !important;
+  button[role="switch"] > span,
+  [role="switch"] > span {
+    display: block !important;
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+    min-width: 0.875rem !important;
+    min-height: 0.875rem !important;
     border: 1px solid #262626 !important;
+    border-radius: 9999px !important;
+    background: #262626 !important;
     opacity: 1 !important;
     box-shadow: none !important;
   }
 
-  [role="switch"][data-state="checked"] [data-slot="switch-thumb"],
-  button[role="switch"][data-state="checked"] [data-slot="switch-thumb"],
-  [data-slot="switch"][data-state="checked"] [data-slot="switch-thumb"],
-  [class*="switch-thumb"][data-state="checked"] {
+  button[role="switch"][aria-checked="false"] > span,
+  [role="switch"][aria-checked="false"] > span {
+    transform: translateX(0.125rem) !important;
+  }
+
+  button[role="switch"][aria-checked="true"] > span,
+  [role="switch"][aria-checked="true"] > span,
+  button[role="switch"][data-state="checked"] > span,
+  [role="switch"][data-state="checked"] > span {
+    transform: translateX(1rem) !important;
     background: #111111 !important;
     border-color: #111111 !important;
   }
 
-  /* 复选框/单选按钮在浅色模式兜底可见 */
+  /* Checkbox/radio fallback visibility. */
   [role="checkbox"],
   [data-slot="checkbox"],
   input[type="checkbox"],
@@ -416,7 +486,6 @@ customCSS: |
     border: 1px solid var(--minimal-border) !important;
     background: #ffffff !important;
     color: #262626 !important;
-    padding: 10px 16px !important;
   }
 
   input::placeholder,
@@ -462,12 +531,9 @@ customCSS: |
     border-bottom: 0;
   }
 
-  [role="listbox"],
-  [role="menu"],
   .dialog,
   .modal,
   [data-state="open"][role="dialog"] {
-    border-radius: var(--minimal-container) !important;
     border: 1px solid var(--minimal-border) !important;
     background: #ffffff !important;
   }
@@ -482,7 +548,7 @@ customCSS: |
     font-weight: 500 !important;
   }
 
-  /* 修复原生 dark 主题混合模式在白底下导致标题不可见 */
+  /* Disable dark-theme blend modes on a white canvas. */
   .blend-lighter {
     mix-blend-mode: normal !important;
     opacity: 1 !important;
@@ -494,17 +560,8 @@ customCSS: |
     color: #262626 !important;
   }
 
-  /* 主题选择器：为 Porcelain 补上调色盘预览块 */
-  button:has(span:where(:not(:empty))) .h-4.w-9.shrink-0.border.border-dashed.border-current\/20 {
-    border-style: solid !important;
-    border-color: #d4d4d4 !important;
-    background:
-      linear-gradient(
-        to right,
-        #000000 0 33.33%,
-        #262626 33.33% 66.66%,
-        #e5e5e5 66.66% 100%
-      ) !important;
+  .theme-default-filler {
+    display: none !important;
   }
 
   ::-webkit-scrollbar {
@@ -521,12 +578,13 @@ customCSS: |
     background: #fafafa;
   }
 
-  /* 关闭 dark 默认的大圆形模糊装饰层，避免侧边栏展开时遮挡内容 */
+  /* Hide default dark decorative blur layers. */
   #root > div.bg-black::before,
   #root > div.bg-black::after,
   #root > div.bg-black [class*="blur-3xl"],
   #root > div.bg-black [class*="blur-2xl"],
-  #root > div.bg-black [class*="blur-xl"] {
+  #root > div.bg-black [class*="blur-xl"],
+  [style*="--component-backdrop-filler-opacity"] .theme-default-filler {
     display: none !important;
     content: none !important;
     filter: none !important;
