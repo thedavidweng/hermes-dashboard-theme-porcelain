@@ -1,10 +1,10 @@
 [English](README.md) · [简体中文](README.zh-CN.md)
 
-# Hermes Dashboard Theme: Porcelain（羊脂玉主题）
+# Hermes Dashboard Theme: Porcelain（白瓷主题）
 
 
 
-Porcelain（羊脂玉）是为 Hermes Agent 仪表板设计的极简、高可读性浅色主题。
+Porcelain（白瓷）是为 Hermes Agent 仪表板设计的极简、高可读性浅色主题。
 它保持默认的仪表板布局、尺寸和控件不变，同时用素雅的灰度表面、系统字体
 和高对比度控件取代了原本风格化的深色处理和装饰性光晕。
 
