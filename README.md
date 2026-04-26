@@ -1,5 +1,8 @@
 # Hermes Dashboard Theme: Porcelain
 
+[English](README.md) · [简体中文](README.zh-CN.md)
+
+
 Porcelain is a minimal, readable light theme for the Hermes Agent dashboard.
 It keeps the dashboard layout and interaction model intact while replacing the
 default stylized dark treatment with a quiet monochrome surface, system fonts,
