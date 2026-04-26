@@ -1,38 +1,24 @@
 # Changelog
 
-All notable changes to this theme will be documented in this file.
+All notable changes to this theme are documented here.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [Unreleased]
+
+### Changed
+- Rebuilt the Porcelain CSS around Hermes' actual theme hooks and DOM targets.
+- Restored default Hermes layout sizing by using the default `0.5rem` radius and removing theme-level card/tab/badge geometry overrides.
+- Forced Hermes display utility classes to use the native system font stack.
+- Made the navigation icon and switch thumbs visible on the light canvas.
+- Disabled the default filler image layer that produced an opaque circular artifact in light mode.
+
+### Removed
+- Removed obsolete demo wording and unused plugin slot UI.
 
 ## [1.0.0] - 2026-04-25
 
 ### Added
-- Initial Porcelain theme for Hermes Dashboard
-- Pure white canvas (`palette.background: #ffffff`)
-- Grayscale color system (`#374151` primary, gray-scale overrides)
-- 12px global border radius (`layout.radius: "12px"`)
-- Pill-shaped navigation tabs via `componentStyles.tab.clipPath`
-- Lightweight shadow on cards for depth
-- Glassmorphism header (semi-transparent + backdrop blur)
-- Custom scrollbar styling
-- Table styling with zebra striping and hover states
-- `.stat-card-bar` utility for bar chart visualization
-- Badge/Tab/Progress pill shapes
-- Full `customCSS` for selector-level control (tables, code blocks, modals, tooltips, dropdowskeleton loading animation)
-
-### Companion Plugin (optional)
-- Sidebar HUD displaying realtime agent status (sessions, version, uptime, model)
-- Header crest support (reads `--theme-asset-crest` from active theme)
-- Sessions page top banner augmentation
-- `plugin_api.py` skeleton for custom backend routes
-
-### Documentation
-- Comprehensive README with design philosophy
-- FEATURES.md for hackathon submission
-- Contributing guide (CONTRIBUTING.md)
-- Install script (`scripts/install.sh`)
-- Dev helper (`scripts/dev.sh`)
+- Initial Porcelain theme for Hermes Dashboard.
+- Optional companion plugin for the Porcelain swatch preview in the theme picker.
 
 [Unreleased]: https://github.com/thedavidweng/hermes-dashboard-theme-porcelain/compare/v1.0.0...HEAD
 [1.0.0]: https://github.com/thedavidweng/hermes-dashboard-theme-porcelain/releases/tag/v1.0.0

@@ -1,21 +1,36 @@
 #!/usr/bin/env bash
 # Porcelain Theme dev helper.
 
+set -e
+
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+THEME_DIR="$HOME/.hermes/dashboard-themes"
+THEME_PATH="$THEME_DIR/porcelain.yaml"
+LEGACY_THEME_PATH="$THEME_DIR/minimalist.yaml"
+LEGACY_DISABLED_PATH="$THEME_DIR/minimalist.yaml.disabled"
+PLUGIN_DIR="$HOME/.hermes/plugins/porcelain-theme/dashboard"
+
+migrate_legacy_theme() {
+  if [[ -f "$LEGACY_THEME_PATH" ]] && grep -Eq '^name:[[:space:]]*porcelain[[:space:]]*$' "$LEGACY_THEME_PATH"; then
+    echo "Moving legacy theme file out of Hermes theme discovery..."
+    mv "$LEGACY_THEME_PATH" "$LEGACY_DISABLED_PATH"
+  fi
+}
 
 case "${1:-help}" in
   install)
     echo "Installing theme..."
-    mkdir -p "$HOME/.hermes/dashboard-themes"
-    cp "$REPO_DIR/theme/porcelain.yaml" "$HOME/.hermes/dashboard-themes/"
+    mkdir -p "$THEME_DIR"
+    migrate_legacy_theme
+    cp "$REPO_DIR/theme/porcelain.yaml" "$THEME_PATH"
     echo "Theme installed."
     ;;
   install-plugin)
     echo "Installing companion plugin..."
-    mkdir -p "$HOME/.hermes/plugins/porcelain-theme/dashboard"
-    cp -r "$REPO_DIR/plugin/." "$HOME/.hermes/plugins/porcelain-theme/dashboard/"
+    mkdir -p "$PLUGIN_DIR"
+    cp -r "$REPO_DIR/plugin/." "$PLUGIN_DIR/"
     echo "Requesting plugin rescan..."
-    curl -s "http://127.0.0.1:9119/api/dashboard/plugins/rescan" > /dev/null
+    curl -s "http://127.0.0.1:9119/api/dashboard/plugins/rescan" > /dev/null || true
     echo "Plugin installed and rescan requested."
     ;;
   rescan)
@@ -26,11 +41,11 @@ case "${1:-help}" in
     tail -f "$HOME/.hermes/logs/errors.log"
     ;;
   check)
-    curl -s "http://127.0.0.1:9119/api/dashboard/themes" | jq '.[] | select(.name=="porcelain")'
+    curl -s "http://127.0.0.1:9119/api/dashboard/themes" | jq '.themes[] | select(.name=="porcelain")'
     ;;
   clean)
     echo "Removing local Porcelain install..."
-    rm -f "$HOME/.hermes/dashboard-themes/porcelain.yaml"
+    rm -f "$THEME_PATH"
     rm -rf "$HOME/.hermes/plugins/porcelain-theme"
     echo "Removed."
     ;;

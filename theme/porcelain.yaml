@@ -16,585 +16,245 @@ palette:
   noiseOpacity: 0
 
 colorOverrides:
-  primary: "#e5e5e5"
-  primaryForeground: "#262626"
-  secondary: "#fafafa"
+  primary: "#262626"
+  primaryForeground: "#ffffff"
+  secondary: "#f7f7f7"
   secondaryForeground: "#262626"
-  accent: "#f5f5f5"
+  accent: "#f2f2f2"
   accentForeground: "#262626"
-  muted: "#fafafa"
-  mutedForeground: "#737373"
-  border: "#e5e5e5"
-  input: "#e5e5e5"
-  ring: "rgba(59, 130, 246, 0.5)"
+  muted: "#f7f7f7"
+  mutedForeground: "#6b6b6b"
+  border: "#d9d9d9"
+  input: "#d9d9d9"
+  ring: "rgba(38, 38, 38, 0.28)"
   card: "#ffffff"
-  cardForeground: "#000000"
+  cardForeground: "#111111"
   popover: "#ffffff"
-  popoverForeground: "#000000"
+  popoverForeground: "#111111"
   destructive: "#262626"
+  destructiveForeground: "#ffffff"
   success: "#262626"
+  warning: "#737373"
 
 typography:
-  fontSans: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif"
-  fontMono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
-  fontDisplay: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif"
+  fontSans: "system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif"
+  fontMono: "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', monospace"
+  fontDisplay: "system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif"
   baseSize: "15px"
   lineHeight: "1.55"
   letterSpacing: "0"
 
 layout:
-  radius: "12px"
+  radius: "0.5rem"
   density: comfortable
 
 layoutVariant: standard
 
 componentStyles:
-  page:
-    background: "#ffffff"
-  header:
-    background: "#ffffff"
-    borderBottom: "1px solid #e5e5e5"
-    boxShadow: "none"
-  card:
-    background: "#ffffff"
-    border: "1px solid #e5e5e5"
-    borderRadius: "12px"
-    boxShadow: "none"
-  tab:
-    borderRadius: "9999px"
-    boxShadow: "none"
-  badge:
-    borderRadius: "9999px"
-    boxShadow: "none"
-  progress:
-    borderRadius: "9999px"
-    boxShadow: "none"
   backdrop:
     fillerOpacity: "0"
     fillerBlendMode: "normal"
 
 customCSS: |
   :root {
-    --minimal-black: #000000;
-    --minimal-near-black: #262626;
-    --minimal-stone: #737373;
-    --minimal-silver: #a3a3a3;
-    --minimal-border: #e5e5e5;
-    --minimal-surface: #fafafa;
-    --minimal-container: 12px;
-    --minimal-pill: 9999px;
-    --porcelain-font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-    --porcelain-font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --porcelain-text: #111111;
+    --porcelain-muted: #6b6b6b;
+    --porcelain-border: #d9d9d9;
+    --porcelain-surface: #ffffff;
+    --porcelain-soft: #f7f7f7;
+    --porcelain-font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    --porcelain-font-display: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --porcelain-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   }
 
   html,
   body,
   #root {
-    background: #ffffff !important;
-    color: var(--minimal-black) !important;
+    background: var(--porcelain-surface) !important;
+    color: var(--porcelain-text) !important;
     font-family: var(--porcelain-font-sans) !important;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
-  * {
+  #root,
+  #root * {
+    box-shadow: none !important;
+  }
+
+  #root *::before,
+  #root *::after {
     box-shadow: none !important;
   }
 
   #root,
-  #root * {
+  #root :where(button, input, textarea, select, div, span, p, small, label, a, li, td, th, h1, h2, h3, h4, h5, h6) {
     font-family: var(--porcelain-font-sans) !important;
     letter-spacing: 0 !important;
     text-transform: none !important;
   }
 
-  #root code,
-  #root kbd,
-  #root pre,
-  #root samp,
-  #root code *,
-  #root pre * {
-    font-family: var(--theme-font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
-  }
-
-  h1, h2, h3, [data-slot="card-title"], [class*="text-3xl"], [class*="text-4xl"] {
-    font-family: var(--porcelain-font-display) !important;
-    font-weight: 500 !important;
-    letter-spacing: 0 !important;
-    color: var(--minimal-black) !important;
-  }
-
-  .font-mondwest,
-  [class*="font-mondwest"],
-  .font-expanded,
-  [class*="font-expanded"],
-  .font-display,
-  [class*="font-display"],
-  .font-mono-ui,
-  [class*="font-mono-ui"] {
+  #root :where(.font-mondwest, .font-expanded, .font-display, .font-courier, [class*="font-mondwest"], [class*="font-expanded"], [class*="font-display"], [class*="font-courier"]) {
     font-family: var(--porcelain-font-sans) !important;
     letter-spacing: 0 !important;
     text-transform: none !important;
   }
 
-  h1.font-mondwest,
-  h2.font-mondwest,
-  h3.font-mondwest,
-  .font-expanded,
-  [class*="font-expanded"],
-  [data-slot="card-title"] {
+  #root :where(code, kbd, pre, samp, .font-mono, .font-mono-ui, [class*="font-mono"]) {
+    font-family: var(--porcelain-font-mono) !important;
+  }
+
+  #root :where(h1, h2, h3, [data-slot="card-title"], .font-expanded, [class*="font-expanded"]) {
     font-family: var(--porcelain-font-display) !important;
     font-weight: 500 !important;
+  }
+
+  #root :where(.uppercase, [class*="uppercase"]) {
+    text-transform: none !important;
+  }
+
+  #root :where(.tracking-wider, .tracking-wide, [class*="tracking-"]) {
     letter-spacing: 0 !important;
   }
 
-  p, span, small, label, [class*="text-muted"] {
-    color: var(--minimal-stone);
+  #root > div {
+    background: var(--porcelain-surface) !important;
+    color: var(--porcelain-text) !important;
   }
 
-  header button:has(svg):not(:has(span)),
-  aside#app-sidebar button:has(svg):not(:has(span)),
-  #app-sidebar button:has(svg):not(:has(span)),
-  button[aria-label*="menu" i],
-  button[aria-label*="sidebar" i],
-  button[title*="menu" i],
-  button[title*="sidebar" i] {
-    color: #111111 !important;
-    opacity: 1 !important;
+  #root .theme-default-filler {
+    display: none !important;
+    opacity: 0 !important;
   }
 
-  header button:has(svg):not(:has(span)) svg,
-  header button:has(svg):not(:has(span)) svg *,
-  header button:has(svg):not(:has(span)) path,
-  header button:has(svg):not(:has(span)) line,
-  aside#app-sidebar button:has(svg):not(:has(span)) svg,
-  #app-sidebar button:has(svg):not(:has(span)) svg,
-  button[aria-label*="menu" i] svg,
-  button[aria-label*="menu" i] svg *,
-  button[aria-label*="menu" i] path,
-  button[aria-label*="menu" i] line,
-  button[aria-label*="navigation" i] svg,
-  button[aria-label*="navigation" i] svg *,
-  button[aria-label*="navigation" i] path,
-  button[aria-label*="navigation" i] line,
-  button[aria-label*="sidebar" i] svg,
-  button[title*="menu" i] svg,
-  button[title*="sidebar" i] svg {
-    color: #111111 !important;
-    stroke: #111111 !important;
-    fill: none !important;
-    stroke-opacity: 1 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
+  #root .blend-lighter,
+  #root [style*="mix-blend-mode"] {
+    mix-blend-mode: normal !important;
   }
 
-  /* Sidebar header icon button. */
-  aside#app-sidebar > div:first-child button {
-    width: 1.75rem !important;
-    height: 1.75rem !important;
-    padding: 0 !important;
-    border: 1px solid #d4d4d4 !important;
-    border-radius: 0.375rem !important;
-    background: #ffffff !important;
-    color: #000000 !important;
-  }
-
-  aside#app-sidebar > div:first-child button svg {
-    display: block !important;
-    width: 1rem !important;
-    height: 1rem !important;
-    stroke: currentColor !important;
-    fill: none !important;
-    opacity: 1 !important;
-  }
-
-  /* Make the sidebar flat and opaque. */
-  aside#app-sidebar,
-  aside#app-sidebar *,
-  #app-sidebar {
+  #root :where(header, aside, main, section, article, [role="dialog"], [role="listbox"], [data-slot="card"]) {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
 
-  aside#app-sidebar,
-  #app-sidebar {
-    background: #ffffff !important;
+  #root :where(.bg-black, [class*="bg-black/"], [class*="bg-background-base/"]) {
+    background-color: var(--porcelain-surface) !important;
+  }
+
+  #root :where(.text-midground, [class*="text-midground"], .text-foreground, [class*="text-foreground"]) {
+    color: var(--porcelain-text) !important;
+  }
+
+  #root :where(.text-muted-foreground, [class*="text-muted-foreground"]) {
+    color: var(--porcelain-muted) !important;
+  }
+
+  #root :where(.border-current\/20, [class*="border-current/"], .border-border, [class*="border-border"]) {
+    border-color: var(--porcelain-border) !important;
+  }
+
+  #root :where(button, [role="button"], input, textarea, select) {
     opacity: 1 !important;
   }
 
-  aside#app-sidebar [class*="bg-background-base/95"],
-  aside#app-sidebar [class*="bg-background-base/"],
-  aside#app-sidebar [class*="bg-black/"],
-  aside#app-sidebar [class*="bg-card/"],
-  aside#app-sidebar [class*="bg-midground/"] {
-    background: #ffffff !important;
-    opacity: 1 !important;
-  }
-
-  aside#app-sidebar [class*="backdrop-blur"],
-  aside#app-sidebar [class*="blur-"] {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    filter: none !important;
-  }
-
-  /* Keep the Hermes Agent mark visible on a light theme. */
-  aside#app-sidebar [class*="h-14"] img,
-  aside#app-sidebar [class*="h-14"] svg,
-  aside#app-sidebar [class*="h-14"] [class*="logo"],
-  aside#app-sidebar [class*="h-14"] [class*="brand"] {
+  #root :where(button, [role="button"]) :where(svg, svg *) {
     opacity: 1 !important;
     visibility: visible !important;
-    filter: none !important;
-    mix-blend-mode: normal !important;
-    color: #111111 !important;
-    fill: currentColor !important;
-    stroke: currentColor !important;
   }
 
-  aside#app-sidebar [class*="h-14"] a,
-  aside#app-sidebar [class*="h-14"] span,
-  aside#app-sidebar [class*="h-14"] div {
-    color: #111111 !important;
-  }
-
-  /* Header brand fallback. */
-  #app-sidebar > div:first-child,
-  aside#app-sidebar > div:first-child {
-    background: #ffffff !important;
-  }
-
-  #app-sidebar > div:first-child *,
-  aside#app-sidebar > div:first-child * {
-    opacity: 1 !important;
-    visibility: visible !important;
-    mix-blend-mode: normal !important;
-    filter: none !important;
-  }
-
-  #app-sidebar > div:first-child .font-mondwest,
-  aside#app-sidebar > div:first-child .font-mondwest,
-  #app-sidebar > div:first-child [class*="font-mondwest"],
-  aside#app-sidebar > div:first-child [class*="font-mondwest"],
-  #app-sidebar > div:first-child [class*="text-midground"],
-  aside#app-sidebar > div:first-child [class*="text-midground"] {
-    color: #111111 !important;
-    -webkit-text-fill-color: #111111 !important;
-    text-shadow: none !important;
-    opacity: 1 !important;
-  }
-
-  #app-sidebar > div:first-child svg,
-  aside#app-sidebar > div:first-child svg,
-  #app-sidebar > div:first-child path,
-  aside#app-sidebar > div:first-child path {
-    stroke: #111111 !important;
-    fill: #111111 !important;
-    opacity: 1 !important;
-  }
-
-  /* Desaturate semantic green/cyan remnants. */
-  [class*="bg-green"],
-  [class*="bg-emerald"],
-  [class*="bg-teal"],
-  [class*="bg-lime"],
-  [class*="bg-cyan"] {
-    background-color: #e5e5e5 !important;
-    color: #262626 !important;
-    border-color: #d4d4d4 !important;
-  }
-
-  [class*="text-green"],
-  [class*="text-emerald"],
-  [class*="text-teal"],
-  [class*="text-lime"],
-  [class*="text-cyan"] {
-    color: #525252 !important;
-  }
-
-  [class*="border-green"],
-  [class*="border-emerald"],
-  [class*="border-teal"],
-  [class*="border-lime"],
-  [class*="border-cyan"] {
-    border-color: #d4d4d4 !important;
-  }
-
-  /* Sessions action area visibility fixes. */
-  main button[class*="h-7"],
-  main button[class*="h-8"],
-  main button[class*="w-7"],
-  main button[class*="w-8"],
-  main [class*="border-current/20"],
-  main [class*="text-midground/"],
-  main [class*="text-foreground/"],
-  main [class*="text-current/"],
-  main [class*="opacity-50"],
-  main [class*="opacity-60"],
-  main [class*="opacity-70"] {
-    color: #2f2f2f !important;
-    border-color: #d4d4d4 !important;
-    opacity: 1 !important;
-  }
-
-  main button[class*="h-7"][class*="w-7"],
-  main button[class*="h-8"][class*="w-8"] {
-    background: #ffffff !important;
-    color: #2f2f2f !important;
-    border: 1px solid #d4d4d4 !important;
-    box-shadow: none !important;
-  }
-
-  main button svg,
-  main [role="button"] svg,
-  main .lucide {
-    color: #2f2f2f !important;
+  #root :where(.lucide, svg.lucide) {
+    color: currentColor !important;
     stroke: currentColor !important;
     fill: none !important;
     opacity: 1 !important;
   }
 
-  /* Icon-only buttons must remain visible. */
-  main button:has(svg):not(:has(span)),
-  main [role="button"]:has(svg):not(:has(span)) {
-    color: #1f1f1f !important;
-    border-color: #d4d4d4 !important;
-    background: #ffffff !important;
-    opacity: 1 !important;
-  }
-
-  main button:has(svg):not(:has(span)) svg,
-  main [role="button"]:has(svg):not(:has(span)) svg,
-  main svg.lucide-trash,
-  main .lucide-trash,
-  main [data-lucide="trash"] {
-    color: #1f1f1f !important;
-    stroke: #1f1f1f !important;
-    fill: none !important;
+  #root :where(.lucide path, .lucide line, .lucide polyline, .lucide polygon, .lucide circle, svg.lucide path, svg.lucide line, svg.lucide polyline, svg.lucide polygon, svg.lucide circle) {
+    stroke: currentColor !important;
     stroke-opacity: 1 !important;
+    fill: none !important;
+    opacity: 1 !important;
+  }
+
+  #root button[aria-controls="app-sidebar"] {
+    color: var(--porcelain-text) !important;
+    background: transparent !important;
+    border-color: transparent !important;
+    opacity: 1 !important;
+  }
+
+  #root button[aria-controls="app-sidebar"] :where(svg, svg *) {
+    color: var(--porcelain-text) !important;
+    stroke: var(--porcelain-text) !important;
+    stroke-opacity: 1 !important;
+    fill: none !important;
     opacity: 1 !important;
     visibility: visible !important;
   }
 
-  /* Compact session row labels. */
-  main [class*="px-2"][class*="py-1"],
-  main [class*="text-[10px]"],
-  main [class*="text-xs"][class*="border"] {
-    color: #3a3a3a !important;
-    border-color: #d4d4d4 !important;
-    background: #ffffff !important;
-    opacity: 1 !important;
+  #root aside#app-sidebar,
+  #root #app-sidebar {
+    background: var(--porcelain-surface) !important;
+    color: var(--porcelain-text) !important;
   }
 
-  /* Pagination and footer controls. */
-  main [class*="pagination"] button,
-  main [class*="page"] button {
-    color: #2f2f2f !important;
-    border-color: #d4d4d4 !important;
-    background: #ffffff !important;
-    opacity: 1 !important;
-  }
-
-  /* Switch controls: keep host dimensions and make the thumb visible. */
-  button[role="switch"],
-  [role="switch"] {
+  #root :where(button[role="switch"], [role="switch"][aria-checked]) {
     position: relative !important;
     display: inline-flex !important;
     align-items: center !important;
+    flex: 0 0 auto !important;
     width: 2.25rem !important;
     min-width: 2.25rem !important;
     height: 1.25rem !important;
     min-height: 1.25rem !important;
     padding: 0 !important;
-    border: 1px solid #d4d4d4 !important;
+    border: 1px solid var(--porcelain-border) !important;
     border-radius: 9999px !important;
-    background: #ffffff !important;
-    color: #262626 !important;
-    opacity: 1 !important;
+    background: var(--porcelain-surface) !important;
+    color: var(--porcelain-text) !important;
   }
 
-  button[role="switch"][aria-checked="true"],
-  [role="switch"][aria-checked="true"],
-  button[role="switch"][data-state="checked"],
-  [role="switch"][data-state="checked"] {
-    background: #e5e5e5 !important;
-    border-color: #bfbfbf !important;
-  }
-
-  button[role="switch"] > span,
-  [role="switch"] > span {
+  #root :where(button[role="switch"], [role="switch"][aria-checked]) > span {
     display: block !important;
     width: 0.875rem !important;
-    height: 0.875rem !important;
     min-width: 0.875rem !important;
+    height: 0.875rem !important;
     min-height: 0.875rem !important;
-    border: 1px solid #262626 !important;
     border-radius: 9999px !important;
-    background: #262626 !important;
-    opacity: 1 !important;
-    box-shadow: none !important;
-  }
-
-  button[role="switch"][aria-checked="false"] > span,
-  [role="switch"][aria-checked="false"] > span {
-    transform: translateX(0.125rem) !important;
-  }
-
-  button[role="switch"][aria-checked="true"] > span,
-  [role="switch"][aria-checked="true"] > span,
-  button[role="switch"][data-state="checked"] > span,
-  [role="switch"][data-state="checked"] > span {
-    transform: translateX(1rem) !important;
-    background: #111111 !important;
-    border-color: #111111 !important;
-  }
-
-  /* Checkbox/radio fallback visibility. */
-  [role="checkbox"],
-  [data-slot="checkbox"],
-  input[type="checkbox"],
-  [role="radio"],
-  [data-slot="radio-group-item"],
-  input[type="radio"] {
-    border-color: #bfbfbf !important;
-    background: #ffffff !important;
-    color: #111111 !important;
-  }
-
-  [role="checkbox"][data-state="checked"],
-  [data-slot="checkbox"][data-state="checked"],
-  input[type="checkbox"]:checked,
-  [role="radio"][data-state="checked"],
-  [data-slot="radio-group-item"][data-state="checked"],
-  input[type="radio"]:checked {
-    background: #262626 !important;
-    border-color: #262626 !important;
-    color: #ffffff !important;
-  }
-
-  .tabs-trigger[data-state="active"],
-  [role="tab"][data-state="active"] {
-    background: #e5e5e5 !important;
-    color: #262626 !important;
-    border-color: #e5e5e5 !important;
-  }
-
-  input,
-  select,
-  textarea,
-  [type="search"] {
-    border: 1px solid var(--minimal-border) !important;
-    background: #ffffff !important;
-    color: #262626 !important;
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    color: var(--minimal-silver) !important;
-  }
-
-  .card,
-  [data-slot="card"],
-  [class*="rounded-xl"] {
-    border-radius: var(--minimal-container) !important;
-    border: 1px solid var(--minimal-border) !important;
-    background: #ffffff !important;
-  }
-
-  table {
-    border-collapse: separate;
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid var(--minimal-border);
-    border-radius: var(--minimal-container);
-    overflow: hidden;
-    background: #ffffff;
-  }
-
-  table thead th {
-    border-bottom: 1px solid var(--minimal-border);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: var(--minimal-stone);
-    background: #ffffff;
-  }
-
-  table tr td {
-    border-bottom: 1px solid #f0f0f0;
-    color: #111111;
-    background: #ffffff;
-  }
-
-  table tr:last-child td {
-    border-bottom: 0;
-  }
-
-  .dialog,
-  .modal,
-  [data-state="open"][role="dialog"] {
-    border: 1px solid var(--minimal-border) !important;
-    background: #ffffff !important;
-  }
-
-  .badge,
-  [role="status"],
-  [data-slot="badge"] {
-    border-radius: var(--minimal-pill) !important;
-    border: 1px solid var(--minimal-border) !important;
-    background: #ffffff !important;
-    color: #404040 !important;
-    font-weight: 500 !important;
-  }
-
-  /* Disable dark-theme blend modes on a white canvas. */
-  .blend-lighter {
-    mix-blend-mode: normal !important;
+    background: var(--porcelain-muted) !important;
+    translate: 0.125rem 0 !important;
+    transform: none !important;
     opacity: 1 !important;
   }
 
-  h3.font-expanded,
-  .card h3,
-  [data-slot="card"] h3 {
-    color: #262626 !important;
+  #root :where(button[role="switch"][aria-checked="true"], [role="switch"][aria-checked="true"]) {
+    background: var(--porcelain-soft) !important;
+    border-color: #bdbdbd !important;
   }
 
-  .theme-default-filler {
-    display: none !important;
+  #root :where(button[role="switch"][aria-checked="true"], [role="switch"][aria-checked="true"]) > span {
+    background: var(--porcelain-text) !important;
+    translate: 1rem 0 !important;
+    transform: none !important;
   }
 
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+  #root :where([class*="bg-green"], [class*="bg-emerald"], [class*="bg-teal"], [class*="bg-cyan"], [class*="bg-lime"]) {
+    background-color: var(--porcelain-soft) !important;
+    color: var(--porcelain-text) !important;
+    border-color: var(--porcelain-border) !important;
   }
 
-  ::-webkit-scrollbar-thumb {
-    background: #d4d4d4;
-    border-radius: 9999px;
+  #root :where([class*="text-green"], [class*="text-emerald"], [class*="text-teal"], [class*="text-cyan"], [class*="text-lime"]) {
+    color: var(--porcelain-muted) !important;
   }
 
-  ::-webkit-scrollbar-track {
-    background: #fafafa;
+  #root :where(input, textarea, select, [type="search"]) {
+    background: var(--porcelain-surface) !important;
+    border-color: var(--porcelain-border) !important;
+    color: var(--porcelain-text) !important;
   }
 
-  /* Hide default dark decorative blur layers. */
-  #root > div.bg-black::before,
-  #root > div.bg-black::after,
-  #root > div.bg-black [class*="blur-3xl"],
-  #root > div.bg-black [class*="blur-2xl"],
-  #root > div.bg-black [class*="blur-xl"],
-  [style*="--component-backdrop-filler-opacity"] .theme-default-filler {
-    display: none !important;
-    content: none !important;
-    filter: none !important;
-    backdrop-filter: none !important;
-    opacity: 0 !important;
-  }
-
-  @media (max-width: 850px) {
-    h1, [class*="text-4xl"] {
-      font-size: 2rem !important;
-      line-height: 1.1 !important;
-    }
+  #root input::placeholder,
+  #root textarea::placeholder {
+    color: #9a9a9a !important;
   }

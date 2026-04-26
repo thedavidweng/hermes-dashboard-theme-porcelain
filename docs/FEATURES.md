@@ -8,7 +8,7 @@ readable monochrome treatment.
 
 | Principle | Implementation |
 | --- | --- |
-| Preserve layout | No layout variant changes; control dimensions are left to Hermes. |
+| Preserve layout | Uses the default Hermes layout variant, density, and `0.5rem` radius. |
 | System typography | SF Pro/system font stack for UI text; system monospace for code. |
 | White canvas | `#ffffff` background with grayscale text and borders. |
 | Low decoration | Warm glow, noise, and default filler imagery are disabled. |
@@ -30,9 +30,9 @@ readable monochrome treatment.
 
 | Property | Value |
 | --- | --- |
-| `fontSans` | `-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif` |
-| `fontMono` | `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace` |
-| `fontDisplay` | `-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif` |
+| `fontSans` | `system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif` |
+| `fontMono` | `ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', monospace` |
+| `fontDisplay` | `system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif` |
 | `baseSize` | `15px` |
 | `lineHeight` | `1.55` |
 | `letterSpacing` | `0` |
@@ -41,21 +41,21 @@ readable monochrome treatment.
 
 | Bucket | Purpose |
 | --- | --- |
-| `header` | White header with light border |
-| `card` | White cards with light borders and no shadow |
-| `tab`, `badge`, `progress` | Retain pill geometry where Hermes already expects it |
-| `backdrop` | Disables the default filler backdrop layer |
+| `backdrop` | Disables the default filler backdrop layer without changing layout geometry. |
 
 ## Custom CSS
 
-The CSS is intentionally scoped around visibility and typography fixes:
+The CSS is intentionally scoped around Hermes structures that the YAML theme API
+can reach:
 
-- Forces Hermes display classes such as `font-mondwest` and `font-expanded` to
-  use the system font stack.
+- Forces Hermes display utility classes such as `font-mondwest` and
+  `font-expanded` to use the system font stack.
 - Cancels root-level uppercase transforms from the default theme.
-- Keeps hamburger/menu icons visible on a light background.
-- Keeps switches visible while preserving Hermes dimensions.
-- Hides default dark decorative blur and filler layers.
+- Targets the mobile navigation button through `aria-controls="app-sidebar"`.
+- Targets Hermes switches through `button[role="switch"]` and controls both
+  `translate` and `transform` so the thumb remains visible.
+- Hides the default filler image layer that becomes an opaque artifact in light
+  mode.
 
 ## Companion Plugin
 
