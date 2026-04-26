@@ -29,11 +29,12 @@ hermes-dashboard-theme-porcelain/
 ├── theme/
 │   └── porcelain.yaml
 ├── plugin/
-│   ├── manifest.json
-│   ├── plugin_api.py
-│   └── dist/
-│       ├── index.js
-│       └── style.css
+│   └── dashboard/
+│       ├── manifest.json
+│       ├── plugin_api.py
+│       └── dist/
+│           ├── index.js
+│           └── style.css
 ├── docs/
 │   └── FEATURES.md
 ├── scripts/
@@ -46,32 +47,35 @@ hermes-dashboard-theme-porcelain/
 
 ## 安装
 
+### 一键安装（推荐）
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/thedavidweng/hermes-dashboard-theme-porcelain/main/install.sh | bash
+```
+
+脚本会将仓库克隆到临时目录，安装主题及可选配套插件，然后自动清理。
+
+### 本地安装（从源码）
+
 ```bash
 ./scripts/install.sh
 ```
 
-安装脚本会将 `theme/porcelain.yaml` 复制到 `~/.hermes/dashboard-themes/`。
-脚本还会询问是否安装配套插件：插件本身不是主题运行所必需的，但推荐安装，
-因为它在其他主题激活时也能显示 Porcelain 的色板预览，而无需修改 Hermes 核心。
+安装脚本会将 `theme/porcelain.yaml` 复制到 `~/.hermes/dashboard-themes/`，
+并询问是否安装配套插件。插件本身不是主题运行所必需的，但推荐安装，
+因为它在其他主题激活时也能显示 Porcelain 色板预览，且无需修改 Hermes 核心。
 
-手动安装：
+#### 手动安装（不使用脚本）
 
 ```bash
 mkdir -p ~/.hermes/dashboard-themes
-fi
 cp theme/porcelain.yaml ~/.hermes/dashboard-themes/
 
 mkdir -p ~/.hermes/plugins/porcelain-theme/dashboard
-cp -r plugin/. ~/.hermes/plugins/porcelain-theme/dashboard/
+cp -r plugin/dashboard/. ~/.hermes/plugins/porcelain-theme/dashboard/
 ```
 
-如果仪表板已在运行，安装主题后刷新浏览器即可。如果安装或更新了配套插件，
-需要请求插件重扫描或重启仪表板：
-
-```bash
-curl http://127.0.0.1:9119/api/dashboard/plugins/rescan
-```
-
+> **注意：** 源码仓库中插件文件位于 `plugin/dashboard/` 目录下（而非直接放在 `plugin/`）。
 ## 配套插件
 
 当前 Hermes 在激活其他主题时，为用户 YAML 主题渲染占位符色块。YAML 主题无法改变这一状态，
@@ -93,8 +97,8 @@ curl http://127.0.0.1:9119/api/dashboard/plugins/rescan
 
 ```bash
 ruby -e 'require "yaml"; YAML.load_file("theme/porcelain.yaml")'
-node --check plugin/dist/index.js
-python3 -m json.tool plugin/manifest.json >/dev/null
+node --check plugin/dashboard/dist/index.js
+python3 -m json.tool plugin/dashboard/manifest.json >/dev/null
 bash -n scripts/dev.sh scripts/install.sh
 git diff --check
 ```

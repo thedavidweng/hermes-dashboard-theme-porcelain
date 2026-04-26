@@ -72,8 +72,8 @@ layout changes.
 
 ```bash
 ruby -e 'require "yaml"; YAML.load_file("theme/porcelain.yaml")'
-node --check plugin/dist/index.js
-python3 -m json.tool plugin/manifest.json >/dev/null
+node --check plugin/dashboard/dist/index.js
+python3 -m json.tool plugin/dashboard/manifest.json >/dev/null
 bash -n scripts/dev.sh scripts/install.sh
 git diff --check
 ```

@@ -29,11 +29,12 @@ hermes-dashboard-theme-porcelain/
 ├── theme/
 │   └── porcelain.yaml
 ├── plugin/
-│   ├── manifest.json
-│   ├── plugin_api.py
-│   └── dist/
-│       ├── index.js
-│       └── style.css
+│   └── dashboard/
+│       ├── manifest.json
+│       ├── plugin_api.py
+│       └── dist/
+│           ├── index.js
+│           └── style.css
 ├── docs/
 │   └── FEATURES.md
 ├── scripts/
@@ -46,6 +47,16 @@ hermes-dashboard-theme-porcelain/
 
 ## Install
 
+### One-line installer (recommended)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/thedavidweng/hermes-dashboard-theme-porcelain/main/install.sh | bash
+```
+
+The script clones this repo to a temp directory, installs the theme and optional companion plugin, then cleans up.
+
+### Local install (from source)
+
 ```bash
 ./scripts/install.sh
 ```
@@ -55,25 +66,17 @@ It also offers to install the companion plugin. The plugin is optional for the t
 because it adds the Porcelain swatch preview while other themes are active
 without patching Hermes core.
 
-Manual install:
+#### Manual install (no scripts)
 
 ```bash
 mkdir -p ~/.hermes/dashboard-themes
-fi
 cp theme/porcelain.yaml ~/.hermes/dashboard-themes/
 
 mkdir -p ~/.hermes/plugins/porcelain-theme/dashboard
-cp -r plugin/. ~/.hermes/plugins/porcelain-theme/dashboard/
+cp -r plugin/dashboard/. ~/.hermes/plugins/porcelain-theme/dashboard/
 ```
 
-If the dashboard is already running, refresh the browser after installing the
-theme. If you installed or changed the companion plugin, request a plugin rescan
-or restart the dashboard.
-
-```bash
-curl http://127.0.0.1:9119/api/dashboard/plugins/rescan
-```
-
+> **Note:** The source repo stores plugin files under `plugin/dashboard/` (not `plugin/` directly).
 ## Companion Plugin
 
 Hermes currently renders placeholder swatches for user YAML themes when another
@@ -98,8 +101,8 @@ Run these checks before publishing changes:
 
 ```bash
 ruby -e 'require "yaml"; YAML.load_file("theme/porcelain.yaml")'
-node --check plugin/dist/index.js
-python3 -m json.tool plugin/manifest.json >/dev/null
+node --check plugin/dashboard/dist/index.js
+python3 -m json.tool plugin/dashboard/manifest.json >/dev/null
 bash -n scripts/dev.sh scripts/install.sh
 git diff --check
 ```

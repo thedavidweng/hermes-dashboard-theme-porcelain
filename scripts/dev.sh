@@ -28,7 +28,7 @@ case "${1:-help}" in
   install-plugin)
     echo "Installing companion plugin..."
     mkdir -p "$PLUGIN_DIR"
-    cp -r "$REPO_DIR/plugin/." "$PLUGIN_DIR/"
+    cp -r "$REPO_DIR/plugin/dashboard/." "$PLUGIN_DIR/"
     echo "Requesting plugin rescan..."
     curl -s "http://127.0.0.1:9119/api/dashboard/plugins/rescan" > /dev/null || true
     echo "Plugin installed and rescan requested."
