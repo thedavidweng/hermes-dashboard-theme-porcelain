@@ -137,8 +137,15 @@ customCSS: |
     -webkit-backdrop-filter: none !important;
   }
 
-  #root :where(.bg-black, [class*="bg-black/"], [class*="bg-background-base/"]) {
+  #root > div.bg-black,
+  #root :where(header[class*="bg-background-base/"], aside[class*="bg-background-base/"], [class*="bg-background-base/95"]) {
     background-color: var(--porcelain-surface) !important;
+  }
+
+  #root > button.fixed.inset-0[class*="bg-black/"] {
+    background-color: rgba(17, 17, 17, 0.08) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
   #root :where(.text-midground, [class*="text-midground"], .text-foreground, [class*="text-foreground"]) {
