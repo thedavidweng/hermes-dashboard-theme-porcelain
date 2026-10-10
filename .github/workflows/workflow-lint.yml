@@ -25,19 +25,7 @@ jobs:
         with:
           persist-credentials: false
 
-      # Runner-local toolchain: no project-wide mise.toml, no app language runtime.
-      - name: Install jactionlint
-        uses: jdx/mise-action@2d8d4cafcbd33be2ea37d2b6f5ad595363d1f1ca # v5.1.1
-        with:
-          cache: false
-          mise_toml: |
-            [tools]
-            jactionlint = "1.8.2"
-
-      - name: Problem matcher
-        run: echo "::add-matcher::.github/jactionlint-matcher.json"
-
       - name: jactionlint
-        run: |
-          jactionlint -version
-          jactionlint
+        uses: jdx/jactionlint@2462f925040c2aa1c88714dc85bc12d869cc4998 # v2.0.2
+        with:
+          profile: default

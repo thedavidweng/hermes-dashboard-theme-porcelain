@@ -7,7 +7,8 @@ name: Dependabot auto-merge
 # - Security updates bypass cooldown and auto-merge ASAP
 # - CI/required checks still gate the actual merge when configured
 on:
-  pull_request_target:
+  # Metadata-only: same-repository Dependabot gate; no checkout or PR code.
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
 
 permissions: {}
 
@@ -46,7 +47,7 @@ jobs:
         run: |
           set -euo pipefail
           # Release/review tooling stays manual even when patch/minor.
-          deny='googleapis/release-please-action dependabot/fetch-metadata'
+          deny='googleapis/release-please-action dependabot/fetch-metadata jdx/jactionlint'
           for blocked in $deny; do
             case ",${DEP_NAMES}," in
               *",${blocked},"*)
@@ -60,6 +61,11 @@ jobs:
           ut="${UPDATE_TYPE}"
           dt="${DEP_TYPE}"
           alert="${ALERT_STATE}"
+
+          if [ "$ut" = "version-update:semver-major" ]; then
+            echo "major updates require manual review"
+            exit 0
+          fi
 
           eligible=false
           reason=""
