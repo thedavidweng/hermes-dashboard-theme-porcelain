@@ -8,6 +8,11 @@ It keeps the dashboard layout and interaction model intact while replacing the
 default stylized dark treatment with a quiet monochrome surface, system fonts,
 and higher contrast controls.
 
+Choose **Porcelain (Large)** for the same light palette with an 18px base size,
+1.65 line height, and spacious density, matching Hermes Teal (Large).
+Both variants keep the standard dashboard layout. The larger variant implements
+[jd-d's suggestion in #1](https://github.com/thedavidweng/hermes-dashboard-theme-porcelain/issues/1).
+
 ## Design Goals
 
 - Preserve the default Hermes dashboard layout, sizing, and controls.
@@ -70,7 +75,7 @@ without patching Hermes core.
 
 ```bash
 mkdir -p ~/.hermes/dashboard-themes
-cp theme/porcelain.yaml ~/.hermes/dashboard-themes/
+cp theme/*.yaml ~/.hermes/dashboard-themes/
 
 mkdir -p ~/.hermes/plugins/porcelain-theme/dashboard
 cp -r plugin/dashboard/. ~/.hermes/plugins/porcelain-theme/dashboard/

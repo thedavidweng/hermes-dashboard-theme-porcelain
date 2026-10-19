@@ -37,6 +37,15 @@ readable monochrome treatment.
 | `lineHeight` | `1.55` |
 | `letterSpacing` | `0` |
 
+### Large Variant
+
+`theme/porcelain-large.yaml` has a distinct `porcelain-large` identifier and
+`Porcelain (Large)` label. It uses the same palette, fonts, controls and CSS as
+Porcelain, with `baseSize: "18px"`, `lineHeight: "1.65"` and `density: spacious`.
+These are Hermes Teal (Large)'s typography and density settings. Both variants
+use `layoutVariant: standard`; Hermes has no `large` layout variant.
+The installers copy both YAML files.
+
 ### Component Styles
 
 | Bucket | Purpose |
