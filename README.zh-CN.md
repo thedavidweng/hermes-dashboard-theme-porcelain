@@ -69,7 +69,7 @@ curl -fsSL https://raw.githubusercontent.com/thedavidweng/hermes-dashboard-theme
 
 ```bash
 mkdir -p ~/.hermes/dashboard-themes
-cp theme/porcelain.yaml ~/.hermes/dashboard-themes/
+cp theme/*.yaml ~/.hermes/dashboard-themes/
 
 mkdir -p ~/.hermes/plugins/porcelain-theme/dashboard
 cp -r plugin/dashboard/. ~/.hermes/plugins/porcelain-theme/dashboard/

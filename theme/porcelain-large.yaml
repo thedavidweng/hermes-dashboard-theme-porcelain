@@ -1,0 +1,267 @@
+name: porcelain-large
+label: Porcelain (Large)
+description: Porcelain with bigger fonts and roomier spacing.
+
+palette:
+  background:
+    hex: "#ffffff"
+    alpha: 1.0
+  midground:
+    hex: "#262626"
+    alpha: 1.0
+  foreground:
+    hex: "#000000"
+    alpha: 1.0
+  warmGlow: "rgba(0, 0, 0, 0)"
+  noiseOpacity: 0
+
+colorOverrides:
+  primary: "#262626"
+  primaryForeground: "#ffffff"
+  secondary: "#f7f7f7"
+  secondaryForeground: "#262626"
+  accent: "#f2f2f2"
+  accentForeground: "#262626"
+  muted: "#f7f7f7"
+  mutedForeground: "#6b6b6b"
+  border: "#d9d9d9"
+  input: "#d9d9d9"
+  ring: "rgba(38, 38, 38, 0.28)"
+  card: "#ffffff"
+  cardForeground: "#111111"
+  popover: "#ffffff"
+  popoverForeground: "#111111"
+  destructive: "#262626"
+  destructiveForeground: "#ffffff"
+  success: "#262626"
+  warning: "#737373"
+
+typography:
+  fontSans: "system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif"
+  fontMono: "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', monospace"
+  fontDisplay: "system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif"
+  baseSize: "18px"
+  lineHeight: "1.65"
+  letterSpacing: "0"
+
+layout:
+  radius: "0.5rem"
+  density: spacious
+
+layoutVariant: standard
+
+componentStyles:
+  backdrop:
+    fillerOpacity: "0"
+    fillerBlendMode: "normal"
+
+customCSS: |
+  :root {
+    --porcelain-text: #111111;
+    --porcelain-muted: #6b6b6b;
+    --porcelain-border: #d9d9d9;
+    --porcelain-surface: #ffffff;
+    --porcelain-soft: #f7f7f7;
+    --porcelain-font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    --porcelain-font-display: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --porcelain-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  }
+
+  html,
+  body,
+  #root {
+    background: var(--porcelain-surface) !important;
+    color: var(--porcelain-text) !important;
+    font-family: var(--porcelain-font-sans) !important;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  #root,
+  #root * {
+    box-shadow: none !important;
+  }
+
+  #root *::before,
+  #root *::after {
+    box-shadow: none !important;
+  }
+
+  #root,
+  #root :where(button, input, textarea, select, div, span, p, small, label, a, li, td, th, h1, h2, h3, h4, h5, h6) {
+    font-family: var(--porcelain-font-sans) !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+
+  #root :where(.font-mondwest, .font-expanded, .font-display, .font-courier, [class*="font-mondwest"], [class*="font-expanded"], [class*="font-display"], [class*="font-courier"]) {
+    font-family: var(--porcelain-font-sans) !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+
+  #root :where(code, kbd, pre, samp, .font-mono, .font-mono-ui, [class*="font-mono"]) {
+    font-family: var(--porcelain-font-mono) !important;
+  }
+
+  #root :where(h1, h2, h3, [data-slot="card-title"], .font-expanded, [class*="font-expanded"]) {
+    font-family: var(--porcelain-font-display) !important;
+    font-weight: 500 !important;
+  }
+
+  #root :where(.uppercase, [class*="uppercase"]) {
+    text-transform: none !important;
+  }
+
+  #root :where(.tracking-wider, .tracking-wide, [class*="tracking-"]) {
+    letter-spacing: 0 !important;
+  }
+
+  #root > div {
+    background: var(--porcelain-surface) !important;
+    color: var(--porcelain-text) !important;
+  }
+
+  #root .theme-default-filler {
+    display: none !important;
+    opacity: 0 !important;
+  }
+
+  #root .blend-lighter,
+  #root [style*="mix-blend-mode"] {
+    mix-blend-mode: normal !important;
+  }
+
+  #root :where(header, aside, main, section, article, [role="dialog"], [role="listbox"], [data-slot="card"]) {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  #root > div.bg-black,
+  #root :where(header[class*="bg-background-base/"], aside[class*="bg-background-base/"], [class*="bg-background-base/95"]) {
+    background-color: var(--porcelain-surface) !important;
+  }
+
+  #root > button.fixed.inset-0[class*="bg-black/"] {
+    background-color: rgba(17, 17, 17, 0.08) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  #root :where(.text-midground, [class*="text-midground"], .text-foreground, [class*="text-foreground"]) {
+    color: var(--porcelain-text) !important;
+  }
+
+  #root :where(.text-muted-foreground, [class*="text-muted-foreground"]) {
+    color: var(--porcelain-muted) !important;
+  }
+
+  #root :where(.border-current\/20, [class*="border-current/"], .border-border, [class*="border-border"]) {
+    border-color: var(--porcelain-border) !important;
+  }
+
+  #root :where(button, [role="button"], input, textarea, select) {
+    opacity: 1 !important;
+  }
+
+  #root :where(button, [role="button"]) :where(svg, svg *) {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  #root :where(.lucide, svg.lucide) {
+    color: currentColor !important;
+    stroke: currentColor !important;
+    fill: none !important;
+    opacity: 1 !important;
+  }
+
+  #root :where(.lucide path, .lucide line, .lucide polyline, .lucide polygon, .lucide circle, svg.lucide path, svg.lucide line, svg.lucide polyline, svg.lucide polygon, svg.lucide circle) {
+    stroke: currentColor !important;
+    stroke-opacity: 1 !important;
+    fill: none !important;
+    opacity: 1 !important;
+  }
+
+  #root button[aria-controls="app-sidebar"] {
+    color: var(--porcelain-text) !important;
+    background: transparent !important;
+    border-color: transparent !important;
+    opacity: 1 !important;
+  }
+
+  #root button[aria-controls="app-sidebar"] :where(svg, svg *) {
+    color: var(--porcelain-text) !important;
+    stroke: var(--porcelain-text) !important;
+    stroke-opacity: 1 !important;
+    fill: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  #root aside#app-sidebar,
+  #root #app-sidebar {
+    background: var(--porcelain-surface) !important;
+    color: var(--porcelain-text) !important;
+  }
+
+  #root :where(button[role="switch"], [role="switch"][aria-checked]) {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    flex: 0 0 auto !important;
+    width: 2.25rem !important;
+    min-width: 2.25rem !important;
+    height: 1.25rem !important;
+    min-height: 1.25rem !important;
+    padding: 0 !important;
+    border: 1px solid var(--porcelain-border) !important;
+    border-radius: 9999px !important;
+    background: var(--porcelain-surface) !important;
+    color: var(--porcelain-text) !important;
+  }
+
+  #root :where(button[role="switch"], [role="switch"][aria-checked]) > span {
+    display: block !important;
+    width: 0.875rem !important;
+    min-width: 0.875rem !important;
+    height: 0.875rem !important;
+    min-height: 0.875rem !important;
+    border-radius: 9999px !important;
+    background: var(--porcelain-muted) !important;
+    translate: 0.125rem 0 !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  #root :where(button[role="switch"][aria-checked="true"], [role="switch"][aria-checked="true"]) {
+    background: var(--porcelain-soft) !important;
+    border-color: #bdbdbd !important;
+  }
+
+  #root :where(button[role="switch"][aria-checked="true"], [role="switch"][aria-checked="true"]) > span {
+    background: var(--porcelain-text) !important;
+    translate: 1rem 0 !important;
+    transform: none !important;
+  }
+
+  #root :where([class*="bg-green"], [class*="bg-emerald"], [class*="bg-teal"], [class*="bg-cyan"], [class*="bg-lime"]) {
+    background-color: var(--porcelain-soft) !important;
+    color: var(--porcelain-text) !important;
+    border-color: var(--porcelain-border) !important;
+  }
+
+  #root :where([class*="text-green"], [class*="text-emerald"], [class*="text-teal"], [class*="text-cyan"], [class*="text-lime"]) {
+    color: var(--porcelain-muted) !important;
+  }
+
+  #root :where(input, textarea, select, [type="search"]) {
+    background: var(--porcelain-surface) !important;
+    border-color: var(--porcelain-border) !important;
+    color: var(--porcelain-text) !important;
+  }
+
+  #root input::placeholder,
+  #root textarea::placeholder {
+    color: #9a9a9a !important;
+  }

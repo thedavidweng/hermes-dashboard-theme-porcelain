@@ -33,7 +33,6 @@ echo ""
 
 # ── Target directories ───────────────────────────────────────────────────────
 THEME_DIR="$HOME/.hermes/dashboard-themes"
-THEME_PATH="$THEME_DIR/porcelain.yaml"
 PLUGIN_DIR="$HOME/.hermes/plugins/porcelain-theme/dashboard"
 
 # ── Install theme ─────────────────────────────────────────────────────────────
@@ -43,8 +42,8 @@ mkdir -p "$PLUGIN_DIR"
 
 echo ""
 echo "Installing theme..."
-cp "$REPO_DIR/theme/porcelain.yaml" "$THEME_PATH"
-echo "   theme/porcelain.yaml → $THEME_PATH"
+cp "$REPO_DIR/theme/"*.yaml "$THEME_DIR/"
+echo "   theme/*.yaml → $THEME_DIR/"
 
 # ── Optional companion plugin ─────────────────────────────────────────────────
 echo ""
@@ -71,7 +70,7 @@ echo "Installation complete."
 echo ""
 echo "Next steps:"
 echo "  1. Open http://127.0.0.1:9119"
-echo "  2. Open the theme picker (palette icon) and select 'Porcelain'"
+echo "  2. Open the theme picker and select 'Porcelain' or 'Porcelain (Large)'"
 echo "  3. Refresh the browser if the dashboard was already open"
 echo ""
 echo "Debug commands:"

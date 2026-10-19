@@ -5,7 +5,6 @@ set -e
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 THEME_DIR="$HOME/.hermes/dashboard-themes"
-THEME_PATH="$THEME_DIR/porcelain.yaml"
 LEGACY_THEME_PATH="$THEME_DIR/minimalist.yaml"
 LEGACY_DISABLED_PATH="$THEME_DIR/minimalist.yaml.disabled"
 PLUGIN_DIR="$HOME/.hermes/plugins/porcelain-theme/dashboard"
@@ -22,7 +21,7 @@ case "${1:-help}" in
     echo "Installing theme..."
     mkdir -p "$THEME_DIR"
     migrate_legacy_theme
-    cp "$REPO_DIR/theme/porcelain.yaml" "$THEME_PATH"
+    cp "$REPO_DIR/theme/"*.yaml "$THEME_DIR/"
     echo "Theme installed."
     ;;
   install-plugin)
@@ -41,11 +40,11 @@ case "${1:-help}" in
     tail -f "$HOME/.hermes/logs/errors.log"
     ;;
   check)
-    curl -s "http://127.0.0.1:9119/api/dashboard/themes" | jq '.themes[] | select(.name=="porcelain")'
+    curl -s "http://127.0.0.1:9119/api/dashboard/themes" | jq '.themes[] | select(.name=="porcelain" or .name=="porcelain-large")'
     ;;
   clean)
     echo "Removing local Porcelain install..."
-    rm -f "$THEME_PATH"
+    rm -f "$THEME_DIR/porcelain.yaml" "$THEME_DIR/porcelain-large.yaml"
     rm -rf "$HOME/.hermes/plugins/porcelain-theme"
     echo "Removed."
     ;;
