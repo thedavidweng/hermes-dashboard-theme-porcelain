@@ -26,6 +26,6 @@ jobs:
           persist-credentials: false
 
       - name: jactionlint
-        uses: jdx/jactionlint@a65ab044e916760429068fe5794b8306abdfcbb9 # v2.3.0
+        uses: jdx/jactionlint@baa8d685e2b27ff5821558c9eeabb2051c1da61b # v2.4.0
         with:
           profile: default
